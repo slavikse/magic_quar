@@ -1,4 +1,7 @@
 import Vue from 'vue';
+import 'aframe-physics-system';
+import 'aframe-extras';
+import './register';
 import App from './App.vue';
 import router from './router';
 import store from './store';
