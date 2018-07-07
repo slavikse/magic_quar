@@ -1,3 +1,2 @@
 ## Скрин касты этапов создания трёхмерной видео игры в браузе (VR/AR).
-### https://vk.com/video54427462_456239118
-### https://vk.com/video54427462_456239119
+### https://vk.com/videos54427462?section=album_1
