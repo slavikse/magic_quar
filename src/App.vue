@@ -46,8 +46,8 @@
       -->
 
       <a-gltf-model
-        position='1.5 -1 -1.5'
-        rotation='0 180 60'
+        position='-1.5 1 0'
+        rotation='0 270 60'
         scale='0.1 0.1 0.1'
         src="#colt"
       />
