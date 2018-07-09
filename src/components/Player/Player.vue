@@ -1,27 +1,45 @@
 <template>
   <a-entity
-    kinematic-body
-    movement-controls='speed: 0.2'
+    movement-controls='fly: false'
     jump-ability='maxJumps: 1; distance: 1.2'
-    @click='fire'
+    kinematic-body
+    mesh-smooth
+    @click='click'
+    @collide='collide'
   >
     <a-entity
-      position='0 1 0'
+      position='0 1.5 0'
       look-controls='pointerLockEnabled: true'
       camera
     >
-      <!-- Патрон. -->
+      <!--<Balls/>-->
+
+      <!-- todo -->
       <a-sphere
-        v-for='(_, index) in balls'
-        :key='index'
-        position='0 0.6 -0.5'
-        radius='0.4'
+        position='0 0.01 -0.1'
+        radius='0.04'
         dynamic-body
-        color='#059'
+        ref='ball'
+        color='black'
       />
 
+      <!-- todo добавить модель оружия
+      <a-entity
+        position='0 -0.5 -3'
+        id='weapon'
+      >
+        <a-box
+          width='0.2'
+          height='0.2'
+          depth='0.5'
+          static-body
+          color='blue'
+        />
+      </a-entity>
+      -->
+
       <a-cursor
-        geometry='primitive: ring; radiusInner: 0.0005; radiusOuter: 0.005'
+        geometry='primitive: ring; radiusInner: 0.0001; radiusOuter: 0.003'
         material='shader: flat; color: black'
       />
     </a-entity>
@@ -29,24 +47,38 @@
 </template>
 
 <script>
-import { Ball } from '../Ball';
+import { Balls } from '../Balls';
 
 export default {
   name: 'Player',
 
   components: {
-    Ball,
+    Balls,
   },
 
   data() {
     return {
-      balls: [],
+      click() {},
+      rate: 300,
+      event: new CustomEvent('fire'),
     };
+  },
+
+  mounted() {
+    this.click = window.AFRAME.utils.throttle(this.fire, this.rate);
   },
 
   methods: {
     fire() {
-      this.balls.push(null);
+      // document.dispatchEvent(this.event);
+
+      this.$refs.ball.body.position.set(0, 0.01, -0.1);
+      this.$refs.ball.body.velocity.set(0, 0, -20);
+      this.$refs.ball.body.angularVelocity.set(0, 0, 0);
+    },
+
+    collide(e) {
+      console.log('collide', e);
     },
   },
 };

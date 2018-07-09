@@ -1,3 +1,4 @@
+export * from './Balls';
+export * from './Mobs';
 export * from './Player';
-export * from './Ball';
-export * from './Mob';
+export * from './Walls';

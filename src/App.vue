@@ -1,184 +1,180 @@
 <template>
   <a-scene
-    physics='gravity: -8; debug: false'
-    background='color: #333'
-    stats='false'
-  >
-    <!--
     embedded
     arjs
-    -->
+  >
     <a-assets>
-      <!--
       <a-asset-item
-        id='cube'
-        src='glTF/AnimatedCube.gltf'
+        id='colt'
+        src='models/colt/scene.gltf'
       />
-      -->
 
-      <img
-        id='background'
-        src='textures/background.jpg'
-      >
+      <a-asset-item
+        id='potion'
+        src='models/potion/scene.gltf'
+      />
 
-      <img
-        id='roof'
-        src='textures/roof.jpg'
-      >
-
-      <img
-        id='floor'
-        src='textures/floor.jpg'
-      >
-
-      <img
-        id='wall'
-        src='textures/wall.jpg'
-      >
+      <a-asset-item
+        id='imp'
+        src='models/imp/scene.gltf'
+      />
     </a-assets>
-    <!--
-    <a-entity
-      position='0 0 0'
-      gltf-model='#cube'
-    />
-    -->
-
-    <a-sky
-      radius='500'
-      src='#background'
-    />
 
     <a-light
       type='ambient'
       color='white'
     />
 
-    <a-light
-      position='3 10 -10'
-      distance='20'
-      intensity='0.4'
-      type='point'
-      color='#ccc'
-    />
+    <!--a-marker-camera & a-marker-->
+    <a-marker
+      type='pattern'
+      animation-mixer
+      url='markers/pattern-marker.patt'
+    >
+      <!--
+      <a-gltf-model
+        position='0 -1.5 -1.5'
+        rotation='-90 0 0'
+        src="#potion"
+      />
 
-    <!--
-    <a-marker preset="hiro">
-      <a-box
-        position='0 0.5 0'
-        material='color: black'
+      <a-gltf-model
+        position='0 -1.5 -1.5'
+        rotation='-90 0 0'
+        src="#imp"
+      />
+      -->
+
+      <a-gltf-model
+        position='1.5 -1 -1.5'
+        rotation='0 180 60'
+        scale='0.1 0.1 0.1'
+        src="#colt"
       />
     </a-marker>
-    -->
-
-    <!-- Потолок. -->
-    <a-box
-      position='0 5 0'
-      rotation='-90 0 0'
-      height='30'
-      width='30'
-      depth='0.5'
-      material='side: double'
-      repeat='20 20'
-      roughness='1'
-      src='#roof'
-      static-body
-    />
-
-    <!-- Пол. -->
-    <a-plane
-      rotation='-90 0 0'
-      height='100'
-      width='100'
-      repeat='50 50'
-      roughness='1'
-      src='#floor'
-      static-body
-    />
-
-    <!-- Стены: -->
-    <!-- Спереди. -->
-    <a-box
-      position='0 2 -15'
-      rotation='0 0 0'
-      height='6'
-      width='30'
-      depth='0.5'
-      material='side: double'
-      repeat='15 2'
-      roughness='1'
-      src='#wall'
-      static-body
-    />
-
-    <!-- Слева. -->
-    <a-box
-      position='0 2 15'
-      rotation='0 180 0'
-      height='6'
-      width='30'
-      depth='0.5'
-      material='side: double'
-      repeat='15 2'
-      roughness='1'
-      src='#wall'
-      static-body
-    />
-
-    <!-- Справа.
-    <a-box
-      position='-15 2 0'
-      rotation='0 90 0'
-      height='6'
-      width='30'
-      depth='0.5'
-      material='side: double'
-      repeat='15 2'
-      roughness='1'
-      src='#wall'
-      static-body
-    />
-    -->
-
-    <!-- Сзади. -->
-    <a-box
-      position='15 2 0'
-      rotation='0 -90 0'
-      height='6'
-      width='30'
-      depth='0.5'
-      material='side: double'
-      repeat='15 2'
-      roughness='1'
-      src='#wall'
-      static-body
-    />
-    <!-- / Стены -->
-
-    <!-- @raycaster-intersected='test' -->
-    <a-box
-      position='0 0 -5'
-      width='2'
-      height='5'
-      depth='0.5'
-      @click='fire'
-      static-body
-      :color='color'
-    />
-
-    <Player/>
-    <Mob/>
   </a-scene>
+
+  <!--<a-scene-->
+  <!--physics='debug: false; iterations: 100; maxInterval: 0.015'-->
+  <!--stats='false'-->
+  <!--background='color: #333'-->
+  <!--fog='type: linear; color: #aaa'-->
+  <!--embedded-->
+  <!--arjs-->
+  <!--&gt;-->
+  <!--&lt;!&ndash;sound='src: url(audios/octobernight.mp3); loop: true; autoplay: true; volume: 0.5'&ndash;&gt;-->
+
+  <!--&lt;!&ndash;-->
+  <!--embedded-->
+  <!--arjs-->
+  <!--&ndash;&gt;-->
+  <!--<a-assets>-->
+  <!--&lt;!&ndash;-->
+  <!--<a-asset-item-->
+  <!--id='imp'-->
+  <!--src='models/imp/scene.gltf'-->
+  <!--/>-->
+  <!--&ndash;&gt;-->
+
+  <!--<img-->
+  <!--id='background'-->
+  <!--src='textures/background.jpg'-->
+  <!--&gt;-->
+
+  <!--<img-->
+  <!--id='roof'-->
+  <!--src='textures/roof.jpg'-->
+  <!--&gt;-->
+
+  <!--<img-->
+  <!--id='floor'-->
+  <!--src='textures/floor.jpg'-->
+  <!--&gt;-->
+
+  <!--<img-->
+  <!--id='wall'-->
+  <!--src='textures/wall.jpg'-->
+  <!--&gt;-->
+  <!--</a-assets>-->
+
+  <!--
+  <a-entity
+  position='-30 10 0'
+  gltf-model="#imp"
+  static-body
+  />
+  -->
+
+  <!--<a-sky-->
+  <!--radius='500'-->
+  <!--src='#background'-->
+  <!--/>-->
+
+  <!--
+  <a-light
+  type='ambient'
+  color='white'
+  />
+  -->
+
+  <!--<a-light-->
+  <!--type='hemisphere'-->
+  <!--intensity='0.4'-->
+  <!--groundColor='#5424ff'-->
+  <!--color='white'-->
+  <!--castShadow='true'-->
+  <!--/>-->
+
+  <!--<a-light-->
+  <!--position='-6 1 -5'-->
+  <!--rotation='0 -60 0'-->
+  <!--type='spot'-->
+  <!--distance='20'-->
+  <!--intensity='0.67'-->
+  <!--castShadow='true'-->
+  <!--color='#ccc'-->
+  <!--/>-->
+
+  <!--<a-box-->
+  <!--position='0 1 -5'-->
+  <!--width='2'-->
+  <!--height='3'-->
+  <!--depth='0.5'-->
+  <!--@click='fire'-->
+  <!--static-body-->
+  <!--animation='property: rotation; dir: alternate; dur: 3000; loop: true; to: 0 360 0'-->
+  <!--castShadow='true'-->
+  <!--shadow='receive: true'-->
+  <!--:color='color'-->
+  <!--/>-->
+
+  <!--<Mobs/>-->
+  <!--<Player/>-->
+  <!--<Walls/>-->
+
+  <!--&lt;!&ndash;-->
+  <!--<a-ocean-->
+  <!--position='4 0.5 -5'-->
+  <!--width='100'-->
+  <!--depth='100'-->
+  <!--density='40'-->
+  <!--speed='2'-->
+  <!--color='#92E2E2'-->
+  <!--/>-->
+  <!--&ndash;&gt;-->
+  <!--</a-scene>-->
 </template>
 
 <script>
-import { Player, Mob } from './components';
+import { Mobs, Player, Walls } from './components';
 
 export default {
   name: 'App',
 
   components: {
+    Mobs,
     Player,
-    Mob,
+    Walls,
   },
 
   data() {
