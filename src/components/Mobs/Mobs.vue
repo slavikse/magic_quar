@@ -1,6 +1,8 @@
 <template>
   <a-entity
     position='0 1 -2'
+    raycaster='showLine: true; far: 100'
+    line="color: orange; opacity: 0.5"
     @raycaster-intersected='intersected'
   >
     <!--animation='property: position; dir: alternate; dur: 3000; loop: true; to: 0 1 4'-->

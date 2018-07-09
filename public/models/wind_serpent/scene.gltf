@@ -1,0 +1,591 @@
+{
+  "accessors": [
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 153,
+      "max": [
+        1.8517055511474609,
+        -0.26058691740036011,
+        1.3810973167419434
+      ],
+      "min": [
+        -0.069340154528617859,
+        -1.5542539358139038,
+        0.39171737432479858
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 1836,
+      "componentType": 5126,
+      "count": 153,
+      "max": [
+        0.9843137264251709,
+        0.99952602386474609,
+        0.9958876371383667
+      ],
+      "min": [
+        -0.98431330919265747,
+        -0.92934149503707886,
+        -0.98150038719177246
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 225,
+      "max": [
+        152
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 3672,
+      "componentType": 5126,
+      "count": 360,
+      "max": [
+        0.3647845983505249,
+        -0.2419886440038681,
+        1.8715651035308838
+      ],
+      "min": [
+        -0.36479541659355164,
+        -1.7206747531890869,
+        1.1259403228759766
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 7992,
+      "componentType": 5126,
+      "count": 360,
+      "max": [
+        0.9991992712020874,
+        0.86588257551193237,
+        0.90353381633758545
+      ],
+      "min": [
+        -0.9991992712020874,
+        -0.83579683303833008,
+        -0.90785050392150879
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 900,
+      "componentType": 5125,
+      "count": 504,
+      "max": [
+        359
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 12312,
+      "componentType": 5126,
+      "count": 966,
+      "max": [
+        3.6376039981842041,
+        1.7997517585754395,
+        2.0971665382385254
+      ],
+      "min": [
+        -3.6375935077667236,
+        -1.7997438907623291,
+        -2.0463495254516602
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 23904,
+      "componentType": 5126,
+      "count": 966,
+      "max": [
+        0.9999956488609314,
+        0.97494387626647949,
+        0.96222317218780518
+      ],
+      "min": [
+        -1.0000066757202148,
+        -0.9786255955696106,
+        -0.95966958999633789
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 2916,
+      "componentType": 5125,
+      "count": 1356,
+      "max": [
+        965
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 35496,
+      "componentType": 5126,
+      "count": 286,
+      "max": [
+        0.23803529143333435,
+        -0.78718167543411255,
+        1.549267053604126
+      ],
+      "min": [
+        -0.23804526031017303,
+        -1.761674165725708,
+        0.98932474851608276
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 38928,
+      "componentType": 5126,
+      "count": 286,
+      "max": [
+        0.99744951725006104,
+        0.24752219021320343,
+        0.92431747913360596
+      ],
+      "min": [
+        -0.99744915962219238,
+        -0.95329469442367554,
+        -0.97719311714172363
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 8340,
+      "componentType": 5125,
+      "count": 402,
+      "max": [
+        285
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 42360,
+      "componentType": 5126,
+      "count": 802,
+      "max": [
+        3.6376039981842041,
+        1.7386155128479004,
+        1.9962592124938965
+      ],
+      "min": [
+        -3.6375935077667236,
+        -1.5296837091445923,
+        -2.097139835357666
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 51984,
+      "componentType": 5126,
+      "count": 802,
+      "max": [
+        0.95645195245742798,
+        0.99164223670959473,
+        0.70262670516967773
+      ],
+      "min": [
+        -0.95645469427108765,
+        -0.98487484455108643,
+        -0.91794884204864502
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 9948,
+      "componentType": 5125,
+      "count": 948,
+      "max": [
+        801
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 1,
+      "max": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "min": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "type": "MAT4"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "ikapoura (https://sketchfab.com/ikapoura)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/models/fb0cf3f65e7548ebb7c0cc2693f7b846",
+      "title": "Wind Serpent - Mythical Beasts Jousting Assets"
+    },
+    "generator": "Sketchfab-3.18.6",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 13740,
+      "byteOffset": 0,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 61608,
+      "byteOffset": 13740,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 64,
+      "byteOffset": 75348,
+      "byteStride": 64,
+      "name": "floatBufferViews"
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 75412,
+      "uri": "scene.bin"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "name": "Wind_Serpent_Tongue",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.1448454112,
+          0.0133919409,
+          0.0066378814999999997,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.59999999999999998
+      }
+    },
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "name": "Wind_Serpent_Horns",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.60381662849999995,
+          0.60381662849999995,
+          0.60381662849999995,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "name": "Wind_Serpent_Main",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.25181129569999999,
+          0.040993444599999998,
+          0.072675332400000001,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    },
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "name": "Wind_Serpent_Mouth",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.4479799867,
+          0.24175676700000001,
+          0.24175676700000001,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.59999999999999998
+      }
+    },
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "name": "Wind_Serpent_Secondary",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.80000007149999997,
+          0.69863396879999995,
+          0.33464941380000002,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Wind_Serpent_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0
+          },
+          "indices": 2,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Wind_Serpent_1",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 4,
+            "POSITION": 3
+          },
+          "indices": 5,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Wind_Serpent_2",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 7,
+            "POSITION": 6
+          },
+          "indices": 8,
+          "material": 2,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Wind_Serpent_3",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 10,
+            "POSITION": 9
+          },
+          "indices": 11,
+          "material": 3,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Wind_Serpent_4",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 13,
+            "POSITION": 12
+          },
+          "indices": 14,
+          "material": 4,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "name": "RootNode (gltf orientation matrix)",
+      "rotation": [
+        -0.70710678118654746,
+        -0,
+        -0,
+        0.70710678118654757
+      ]
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "RootNode (model correction matrix)"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "Root"
+    },
+    {
+      "children": [
+        4,
+        5
+      ],
+      "name": "Wind_Serpent_Armature"
+    },
+    {
+      "name": "Wind_Serpent_Armature_rootJoint"
+    },
+    {
+      "children": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        -0,
+        1,
+        -0,
+        0,
+        -0,
+        0,
+        1,
+        0,
+        0.00093000000000000027,
+        0.65816000000000008,
+        -0.25792999999999999,
+        1
+      ],
+      "name": "Wind_Serpent"
+    },
+    {
+      "mesh": 0,
+      "name": "Wind_Serpent_0"
+    },
+    {
+      "mesh": 1,
+      "name": "Wind_Serpent_1"
+    },
+    {
+      "mesh": 2,
+      "name": "Wind_Serpent_2"
+    },
+    {
+      "mesh": 3,
+      "name": "Wind_Serpent_3"
+    },
+    {
+      "mesh": 4,
+      "name": "Wind_Serpent_4"
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "OSG_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "skins": [
+    {
+      "inverseBindMatrices": 15,
+      "joints": [
+        4
+      ],
+      "skeleton": 4
+    }
+  ]
+}
+
