@@ -2,7 +2,6 @@
   <!-- ar embedded arjs -->
   <!-- fog='type: linear; color: #aaa' -->
   <a-scene
-    arjs
     physics='debug: false; iterations: 1000; maxInterval: 0.01'
     vr-mode-ui='enabled: false'
     stats='false'

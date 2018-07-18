@@ -1,8 +1,8 @@
 <template>
   <a-entity
     id='player'
-    movement-controls='fly: false; speed: 0.35'
-    jump-ability='maxJumps: 1; distance: 1.2'
+    movement-controls='fly: false; speed: 0.45'
+    jump-ability='maxJumps: 1; distance: 1.1'
     kinematic-body
     mesh-smooth
   >
@@ -13,7 +13,7 @@
       line='color: orange; opacity: 0.5'
     -->
     <a-entity
-      position='0 1.5 0'
+      position='0 1.6 0'
       @click='click'
       @collide='collide'
       look-controls='pointerLockEnabled: true'
@@ -53,24 +53,25 @@ export default {
       click: Function,
       // 10 выстрелов в секунду.
       rate: 1000 / 10,
+      acceleration: -30,
     };
   },
 
   mounted() {
     this.click = window.AFRAME.utils.throttle(this.fire, this.rate, null);
+    window.app.fire = this.fire;
   },
 
   methods: {
     fire() {
-      const { object3D: player } = this.$refs.cursor;
-      const { x: pX, y: pY, z: pZ } = player.getWorldPosition();
-      const { x: dX, y: dY, z: dZ } = player.getWorldDirection();
-      const multiplier = -15;
+      const { object3D: cursor } = this.$refs.cursor;
+      const { x: pX, y: pY, z: pZ } = cursor.getWorldPosition();
+      const { x: dX, y: dY, z: dZ } = cursor.getWorldDirection();
 
       const event = new CustomEvent('fire', {
         detail: {
           position: [pX, pY, pZ],
-          direction: [dX * multiplier, dY * multiplier, dZ * multiplier],
+          direction: [dX, dY, dZ].map(d => d * this.acceleration),
         },
       });
 
