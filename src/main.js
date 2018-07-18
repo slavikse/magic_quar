@@ -58,17 +58,13 @@ recognition.onresult = ({ results }) => {
 
   if (message === 'выстрел') {
     window.app.fire();
-  } else if (message === 'прыжок') {
-    const e = new Event('keydown');
-    e.key = 'space';
-    document.dispatchEvent(e);
   }
 
   utter.lang = 'ru-RU';
   utter.pitch = 1;
   utter.rate = 1;
   utter.voice = voices[0];
-  utter.text = `Команда: ${message}. Принято!`;
+  utter.text = `Команда: ${message}, принята!`;
 
   if (message === 'пасхалка') {
     utter.text = 'Не надо тут выпрашивать, что ещё не реализовано я СКАЗАЛ!!! А-ТА-ТА!!!';

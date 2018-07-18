@@ -17,6 +17,7 @@
       constraint='target: #body'
       static-body
       color='#755'
+      class='wall'
     />
 
     <!-- Тело. -->
@@ -28,6 +29,7 @@
       static-body
       id='body'
       color='#955'
+      class='wall'
     />
 
     <!-- Левая рука. -->
@@ -39,6 +41,7 @@
       constraint='target: #body'
       static-body
       color='#755'
+      class='wall'
     />
 
     <!-- Правая рука. -->
@@ -50,6 +53,7 @@
       constraint='target: #body'
       static-body
       color='#755'
+      class='wall'
     />
 
     <!-- Левая нога. -->
@@ -61,6 +65,7 @@
       constraint='target: #body'
       static-body
       color='#755'
+      class='wall'
     />
 
     <!-- Правая нога. -->
@@ -72,6 +77,7 @@
       constraint='target: #body'
       static-body
       color='#755'
+      class='wall'
     />
   </a-entity>
 </template>

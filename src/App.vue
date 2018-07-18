@@ -66,6 +66,7 @@
       position='-6 1 -5'
       rotation='0 -60 0'
       light='type: directional; decay: 2; color: #ffc18f; intensity: 0.67; castShadow: true'
+      class='wall'
     />
 
     <!--
@@ -90,6 +91,7 @@
       dynamic-body='mass: 4'
       shadow='castShadow: true'
       color='cyan'
+      class='wall'
     />
 
     <a-box
@@ -100,6 +102,7 @@
       dynamic-body='mass: 4'
       shadow='castShadow: true'
       color='cyan'
+      class='wall'
     />
 
     <a-box
@@ -110,6 +113,7 @@
       dynamic-body='mass: 4'
       shadow='castShadow: true'
       color='cyan'
+      class='wall'
     />
 
     <a-box
@@ -120,6 +124,7 @@
       dynamic-body='mass: 4'
       shadow='castShadow: true'
       color='cyan'
+      class='wall'
     />
 
     <Balls/>
@@ -132,6 +137,7 @@
       constraint="target: #player; type: distance; distance: 4"
       dynamic-body
       color='teal'
+      class='wall'
     />
 
     <!--
