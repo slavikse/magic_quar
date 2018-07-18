@@ -17,22 +17,22 @@
 
       <img
         id='background'
-        src='/textures/background.jpg'
+        src='textures/background.jpg'
       >
 
       <img
         id='roof'
-        src='/textures/roof.jpg'
+        src='textures/roof.jpg'
       >
 
       <img
         id='floor'
-        src='/textures/floor.jpg'
+        src='textures/floor.jpg'
       >
 
       <img
         id='wall'
-        src='/textures/wall.jpg'
+        src='textures/wall.jpg'
       >
     </a-assets>
 
