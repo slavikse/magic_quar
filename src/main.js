@@ -58,8 +58,10 @@ recognition.onresult = ({ results }) => {
 
   if (message === 'выстрел') {
     window.app.fire();
-
-    new Audio('audios/revolver_shoot1.mp3').play();
+  } else if (message === 'прыжок') {
+    const e = new Event('keydown');
+    e.key = 'space';
+    document.dispatchEvent(e);
   }
 
   utter.lang = 'ru-RU';

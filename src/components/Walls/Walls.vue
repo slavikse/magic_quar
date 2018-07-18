@@ -38,6 +38,7 @@
       roughness='1'
       src='#wall'
       static-body
+      class='wall'
     />
 
     <!-- Стена слева. -->
@@ -52,6 +53,7 @@
       roughness='1'
       src='#wall'
       static-body
+      class='wall'
     />
 
     <!-- Стена справа.
@@ -81,6 +83,7 @@
       roughness='1'
       src='#wall'
       static-body
+      class='wall'
     />
   </a-entity>
 </template>
@@ -90,6 +93,10 @@
 export default {
   name: 'Walls',
 
-  components: {},
+  methods: {
+    intersected() {
+      console.log('1');
+    },
+  },
 };
 </script>

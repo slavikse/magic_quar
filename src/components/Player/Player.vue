@@ -76,6 +76,8 @@ export default {
       });
 
       document.dispatchEvent(event);
+
+      new Audio('audios/revolver_shoot1.mp3').play();
     },
 
     collide(e) {
