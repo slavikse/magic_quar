@@ -58,6 +58,8 @@ recognition.onresult = ({ results }) => {
 
   if (message === 'выстрел') {
     window.app.fire();
+
+    new Audio('audios/revolver_shoot1.mp3').play();
   }
 
   utter.lang = 'ru-RU';
@@ -82,3 +84,5 @@ recognition.onspeechend = () => {
     recognition.start();
   }, 1000);
 };
+
+new Audio('audios/octobernight.mp3').play();
