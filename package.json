@@ -1,6 +1,6 @@
 {
   "name": "majic_quar",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -8,22 +8,27 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "aframe": "^0.8.2",
+    "aframe": "^0.8.0",
     "aframe-animation-component": "^5.0.0",
+    "aframe-ar": "^0.2.1-a",
     "aframe-extras": "^4.1.2",
-    "aframe-physics-system": "^3.1.2",
+    "aframe-physics-system": "^3.2.0",
     "babel-plugin-syntax-async-functions": "^6.13.0",
+    "clone-deep": "^4.0.0",
+    "three": "^0.94.0",
+    "three.ar.js": "^0.1.8",
+    "uuid": "^3.3.2",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-export-default-from": "^7.0.0-beta.52",
-    "@vue/cli-plugin-babel": "^3.0.0-beta.15",
-    "@vue/cli-plugin-eslint": "^3.0.0-beta.15",
-    "@vue/cli-service": "^3.0.0-beta.15",
-    "@vue/eslint-config-airbnb": "^3.0.0-rc.3",
-    "node-sass": "^4.9.1",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0-beta.54",
+    "@vue/cli-plugin-babel": "^3.0.0-rc.5",
+    "@vue/cli-plugin-eslint": "^3.0.0-rc.5",
+    "@vue/cli-service": "^3.0.0-rc.5",
+    "@vue/eslint-config-airbnb": "^3.0.0-rc.5",
+    "node-sass": "^4.9.2",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.16"
   },

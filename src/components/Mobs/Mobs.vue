@@ -1,9 +1,9 @@
 <template>
   <a-entity
     position='0 1 -2'
-    raycaster='showLine: true; far: 100'
-    line="color: orange; opacity: 0.5"
+    raycaster
     @raycaster-intersected='intersected'
+    shadow='receive: true'
   >
     <!--animation='property: position; dir: alternate; dur: 3000; loop: true; to: 0 1 4'-->
 
@@ -84,8 +84,9 @@ export default {
 
   methods: {
     // todo система хп. места пополнения хп.
+    // todo пересечение с объектом пули.
     intersected() {
-      console.log('intersected');
+      // console.log('intersected');
     },
   },
 };

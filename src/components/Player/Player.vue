@@ -1,31 +1,27 @@
 <template>
   <a-entity
-    movement-controls='fly: false'
+    id='player'
+    movement-controls='fly: false; speed: 0.35'
     jump-ability='maxJumps: 1; distance: 1.2'
     kinematic-body
     mesh-smooth
-    @click='click'
-    @collide='collide'
   >
+    <!--@raycaster-intersection='intersection'-->
+    <!--
+      ar-raycaster
+      raycaster='showLine: true; far: 100'
+      line='color: orange; opacity: 0.5'
+    -->
     <a-entity
       position='0 1.5 0'
+      @click='click'
+      @collide='collide'
       look-controls='pointerLockEnabled: true'
       camera
     >
-      <!--<Balls/>-->
-
-      <!-- todo -->
-      <a-sphere
-        position='0 0.01 -0.1'
-        radius='0.04'
-        dynamic-body
-        ref='ball'
-        color='black'
-      />
-
       <!-- todo добавить модель оружия
       <a-entity
-        position='0 -0.5 -3'
+        position='0 0 -4'
         id='weapon'
       >
         <a-box
@@ -36,49 +32,57 @@
           color='blue'
         />
       </a-entity>
-      -->
+       -->
 
       <a-cursor
+        ref='cursor'
         geometry='primitive: ring; radiusInner: 0.0001; radiusOuter: 0.003'
         material='shader: flat; color: black'
+        cursor='fuse: false'
       />
     </a-entity>
   </a-entity>
 </template>
 
 <script>
-import { Balls } from '../Balls';
-
 export default {
   name: 'Player',
 
-  components: {
-    Balls,
-  },
-
   data() {
     return {
-      click() {},
-      rate: 300,
-      event: new CustomEvent('fire'),
+      click: Function,
+      // 10 выстрелов в секунду.
+      rate: 1000 / 10,
     };
   },
 
   mounted() {
-    this.click = window.AFRAME.utils.throttle(this.fire, this.rate);
+    this.click = window.AFRAME.utils.throttle(this.fire, this.rate, null);
   },
 
   methods: {
     fire() {
-      // document.dispatchEvent(this.event);
+      const { object3D: player } = this.$refs.cursor;
+      const { x: pX, y: pY, z: pZ } = player.getWorldPosition();
+      const { x: dX, y: dY, z: dZ } = player.getWorldDirection();
+      const multiplier = -15;
 
-      this.$refs.ball.body.position.set(0, 0.01, -0.1);
-      this.$refs.ball.body.velocity.set(0, 0, -20);
-      this.$refs.ball.body.angularVelocity.set(0, 0, 0);
+      const event = new CustomEvent('fire', {
+        detail: {
+          position: [pX, pY, pZ],
+          direction: [dX * multiplier, dY * multiplier, dZ * multiplier],
+        },
+      });
+
+      document.dispatchEvent(event);
     },
 
     collide(e) {
-      console.log('collide', e);
+      // console.log('collide', e);
+    },
+
+    intersection(e) {
+      // console.log('intersection', e.detail.intersections[0].point);
     },
   },
 };
