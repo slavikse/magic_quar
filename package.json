@@ -1,6 +1,6 @@
 {
-  "name": "majic_quar",
-  "version": "0.1.2",
+  "name": "magic_quar",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -10,16 +10,13 @@
   "dependencies": {
     "aframe": "^0.8.0",
     "aframe-animation-component": "^5.0.0",
-    "aframe-ar": "^0.2.1-a",
     "aframe-extras": "^4.1.2",
     "aframe-physics-system": "^3.2.0",
     "babel-plugin-syntax-async-functions": "^6.13.0",
     "clone-deep": "^4.0.0",
     "three": "^0.94.0",
-    "three.ar.js": "^0.1.8",
     "uuid": "^3.3.2",
     "vue": "^2.5.16",
-    "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

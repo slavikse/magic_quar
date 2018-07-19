@@ -1,5 +1,5 @@
 <template>
-  <a-entity>
+  <a-entity id='Balls'>
     <Ball
       v-for='({ id, isShown }) in balls'
       v-if='isShown'
@@ -30,12 +30,12 @@ export default {
   },
 
   mounted() {
-    document.addEventListener('fire', this.fire);
+    document.addEventListener('PlayerFire', this.fire);
     this.interval = setInterval(this.cleaner, this.clearTime);
   },
 
   destroyed() {
-    document.removeEventListener('fire', this.fire);
+    document.removeEventListener('PlayerFire', this.fire);
     clearInterval(this.interval);
   },
 

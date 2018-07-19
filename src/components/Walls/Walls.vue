@@ -1,7 +1,9 @@
 <template>
-  <a-entity>
-    <!-- Потолок. -->
+  <a-entity id='Walls'>
+    <!-- Потолок -->
     <a-box
+      id='WallsRoof'
+      src='#AssetsRoof'
       position='0 5 0'
       rotation='-90 0 0'
       height='30'
@@ -10,24 +12,27 @@
       material='side: double'
       repeat='20 20'
       roughness='1'
-      src='#roof'
       static-body
+      class='collide'
     />
 
-    <!-- Земля. -->
+    <!-- Пол -->
     <a-plane
+      id='WallsFloor'
+      src='#AssetsFloor'
       rotation='-90 0 0'
       height='100'
       width='100'
       repeat='50 50'
       roughness='1'
-      src='#floor'
       static-body
       shadow='receive: true'
     />
 
-    <!-- Стена спереди. -->
+    <!-- Стена спереди -->
     <a-box
+      id='WallsFront'
+      src='#AssetsWall'
       position='0 2 -15'
       rotation='0 0 0'
       height='6'
@@ -36,13 +41,14 @@
       material='side: double'
       repeat='15 2'
       roughness='1'
-      src='#wall'
       static-body
-      class='wall'
+      class='collide'
     />
 
-    <!-- Стена слева. -->
+    <!-- Стена слева -->
     <a-box
+      id='WallsLeft'
+      src='#AssetsWall'
       position='0 2 15'
       rotation='0 180 0'
       height='6'
@@ -51,13 +57,14 @@
       material='side: double'
       repeat='15 2'
       roughness='1'
-      src='#wall'
       static-body
-      class='wall'
+      class='collide'
     />
 
-    <!-- Стена справа.
+    <!-- Стена справа -->
     <a-box
+      id='WallsRight'
+      src='#AssetsWall'
       position='-15 2 0'
       rotation='0 90 0'
       height='6'
@@ -66,13 +73,14 @@
       material='side: double'
       repeat='15 2'
       roughness='1'
-      src='#wall'
       static-body
+      class='collide'
     />
-    -->
 
-    <!-- Стена сзади. -->
+    <!-- Стена сзади -->
     <a-box
+      id='WallsBack'
+      src='#AssetsWall'
       position='15 2 0'
       rotation='0 -90 0'
       height='6'
@@ -81,22 +89,14 @@
       material='side: double'
       repeat='15 2'
       roughness='1'
-      src='#wall'
       static-body
-      class='wall'
+      class='collide'
     />
   </a-entity>
 </template>
 
 <script>
-// todo огородка по бокам территории.
 export default {
   name: 'Walls',
-
-  methods: {
-    intersected() {
-      console.log('1');
-    },
-  },
 };
 </script>

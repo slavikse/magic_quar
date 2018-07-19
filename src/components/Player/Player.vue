@@ -1,44 +1,31 @@
 <template>
   <a-entity
-    id='player'
-    movement-controls='fly: false; speed: 0.45'
-    jump-ability='maxJumps: 1; distance: 1.1'
+    id='Player'
+    movement-controls='speed: 0.45'
+    jump-ability='distance: 1.1'
     kinematic-body
     mesh-smooth
   >
-    <!--@raycaster-intersection='intersection'-->
-    <!--
-      ar-raycaster
-      raycaster='showLine: true; far: 100'
-      line='color: orange; opacity: 0.5'
-    -->
     <a-entity
-      position='0 1.6 0'
+      id='PlayerCamera'
       @click='click'
-      @collide='collide'
+      position='0 1.6 0'
       look-controls='pointerLockEnabled: true'
       camera
     >
-      <!-- todo добавить модель оружия
-      <a-entity
-        position='0 0 -4'
-        id='weapon'
-      >
-        <a-box
-          width='0.2'
-          height='0.2'
-          depth='0.5'
-          static-body
-          color='blue'
-        />
-      </a-entity>
-       -->
-
       <a-cursor
-        ref='cursor'
-        geometry='primitive: ring; radiusInner: 0.0001; radiusOuter: 0.003'
-        material='shader: flat; color: black'
+        id='PlayerCursor'
+        geometry='
+          primitive: ring;
+          radiusInner: 0.0001;
+          radiusOuter: 0.003;
+        '
+        material='
+          shader: flat;
+          color: black;
+        '
         cursor='fuse: false'
+        ref='cursor'
       />
     </a-entity>
   </a-entity>
@@ -51,41 +38,31 @@ export default {
   data() {
     return {
       click: Function,
-      // 10 выстрелов в секунду.
-      rate: 1000 / 10,
+      rate: 1000 / 5,
       acceleration: -30,
     };
   },
 
   mounted() {
     this.click = window.AFRAME.utils.throttle(this.fire, this.rate, null);
-    window.app.fire = this.fire;
+    window.app.PlayerFire = this.fire;
   },
 
   methods: {
     fire() {
-      const { object3D: cursor } = this.$refs.cursor;
-      const { x: pX, y: pY, z: pZ } = cursor.getWorldPosition();
-      const { x: dX, y: dY, z: dZ } = cursor.getWorldDirection();
+      const { object3D: player } = this.$refs.cursor;
+      const { x: pX, y: pY, z: pZ } = player.getWorldPosition();
+      const { x: dX, y: dY, z: dZ } = player.getWorldDirection();
 
-      const event = new CustomEvent('fire', {
+      const playerFire = new CustomEvent('PlayerFire', {
         detail: {
           position: [pX, pY, pZ],
           direction: [dX, dY, dZ].map(d => d * this.acceleration),
         },
       });
 
-      document.dispatchEvent(event);
-
+      document.dispatchEvent(playerFire);
       new Audio('audios/revolver_shoot1.mp3').play();
-    },
-
-    collide(e) {
-      // console.log('collide', e);
-    },
-
-    intersection(e) {
-      // console.log('intersection', e.detail.intersections[0].point);
     },
   },
 };
