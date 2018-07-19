@@ -1,6 +1,7 @@
 <template>
   <a-entity id='Walls'>
     <!-- Потолок -->
+    <!--
     <a-box
       id='WallsRoof'
       src='#AssetsRoof'
@@ -13,8 +14,9 @@
       repeat='20 20'
       roughness='1'
       static-body
-      class='collide'
+      class='MobsCollide'
     />
+    -->
 
     <!-- Пол -->
     <a-plane
@@ -42,7 +44,7 @@
       repeat='15 2'
       roughness='1'
       static-body
-      class='collide'
+      class='MobsCollide'
     />
 
     <!-- Стена слева -->
@@ -58,7 +60,7 @@
       repeat='15 2'
       roughness='1'
       static-body
-      class='collide'
+      class='MobsCollide'
     />
 
     <!-- Стена справа -->
@@ -74,7 +76,7 @@
       repeat='15 2'
       roughness='1'
       static-body
-      class='collide'
+      class='MobsCollide'
     />
 
     <!-- Стена сзади -->
@@ -90,7 +92,7 @@
       repeat='15 2'
       roughness='1'
       static-body
-      class='collide'
+      class='MobsCollide'
     />
   </a-entity>
 </template>

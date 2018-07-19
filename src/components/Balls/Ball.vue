@@ -2,8 +2,9 @@
   <a-sphere
     id='Ball'
     @collide='collide'
-    dynamic-body='mass: 1'
+    dynamic-body='mass: 5'
     radius='0.04'
+    shadow='receive: true'
     color='teal'
   />
 </template>

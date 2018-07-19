@@ -39,7 +39,7 @@ export default {
     return {
       click: Function,
       rate: 1000 / 5,
-      acceleration: -30,
+      acceleration: -20,
     };
   },
 

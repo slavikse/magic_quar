@@ -4,17 +4,17 @@
       id='LightsAmbient'
       position='0 0 0'
       type='ambient'
-      color='#111'
+      color='#999'
     />
 
     <a-entity
       id='LightsPoint1'
-      position='2 3 2'
+      position='0 10 0'
       rotation='0 0 0'
       light='
         type: point;
-        intensity: 0.6;
-        color: #999;
+        intensity: 0.4;
+        color: #fff;
         castShadow: true;
       '
     />
