@@ -2,8 +2,8 @@
   <a-scene
     id='App'
     physics='
-      debug: false;
-      iterations: 1000;
+      debug: true;
+      iterations: 2000;
       maxInterval: 0.01;
     '
     vr-mode-ui='enabled: false'

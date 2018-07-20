@@ -2,9 +2,8 @@
   <a-entity id='Lights'>
     <a-light
       id='LightsAmbient'
-      position='0 0 0'
       type='ambient'
-      color='#999'
+      color='#fff'
     />
 
     <a-entity

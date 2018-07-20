@@ -1,11 +1,13 @@
 <template>
   <a-entity
     id='Player'
+    position='0 0 5'
     movement-controls='speed: 0.45'
     jump-ability='distance: 1.1'
     kinematic-body
     mesh-smooth
   >
+    <!-- todo добавить модель оружия -->
     <a-entity
       id='PlayerCamera'
       @click='click'
@@ -15,6 +17,7 @@
     >
       <a-cursor
         id='PlayerCursor'
+        ref='PlayerCursor'
         geometry='
           primitive: ring;
           radiusInner: 0.0001;
@@ -25,7 +28,6 @@
           color: black;
         '
         cursor='fuse: false'
-        ref='cursor'
       />
     </a-entity>
   </a-entity>
@@ -37,6 +39,7 @@ export default {
 
   data() {
     return {
+      PlayerCursor: null,
       click: Function,
       rate: 1000 / 5,
       acceleration: -20,
@@ -44,15 +47,16 @@ export default {
   },
 
   mounted() {
+    this.PlayerCursor = this.$refs.PlayerCursor.object3D;
+
     this.click = window.AFRAME.utils.throttle(this.fire, this.rate, null);
     window.app.PlayerFire = this.fire;
   },
 
   methods: {
     fire() {
-      const { object3D: player } = this.$refs.cursor;
-      const { x: pX, y: pY, z: pZ } = player.getWorldPosition();
-      const { x: dX, y: dY, z: dZ } = player.getWorldDirection();
+      const { x: pX, y: pY, z: pZ } = this.PlayerCursor.getWorldPosition();
+      const { x: dX, y: dY, z: dZ } = this.PlayerCursor.getWorldDirection();
 
       const playerFire = new CustomEvent('PlayerFire', {
         detail: {
@@ -62,6 +66,7 @@ export default {
       });
 
       document.dispatchEvent(playerFire);
+      // todo добавить другой звук.
       new Audio('audios/revolver_shoot1.mp3').play();
     },
   },

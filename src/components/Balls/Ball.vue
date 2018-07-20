@@ -2,7 +2,7 @@
   <a-sphere
     id='Ball'
     @collide='collide'
-    dynamic-body='mass: 5'
+    dynamic-body='mass: 10'
     radius='0.04'
     shadow='receive: true'
     color='teal'
@@ -16,9 +16,9 @@ export default {
   methods: {
     collide(e) {
       if (e.detail.contact.bj.el.className === 'MobsCollide') {
-        const audio = new Audio('audios/rebound.wav');
-        audio.volume = 0.4;
-        audio.play();
+        // const audio = new Audio('audios/rebound.wav');
+        // audio.volume = 0.4;
+        // audio.play();
       }
     },
   },

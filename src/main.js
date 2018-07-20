@@ -2,8 +2,8 @@ import 'aframe';
 import 'aframe-extras';
 import 'aframe-physics-system';
 import 'aframe-animation-component';
-// import './register';
 import Vue from 'vue';
+import './registerComponent';
 import App from './App.vue';
 import store from './store';
 
