@@ -1,13 +1,12 @@
 <template>
   <a-entity
     id='Player'
-    position='0 0 5'
-    movement-controls='speed: 0.45'
-    jump-ability='distance: 1.1'
+    position='-10 0 25'
+    :movement-controls='controls'
+    jump-ability='distance: 1.2'
     kinematic-body
-    mesh-smooth
+    shadow='receive: true'
   >
-    <!-- todo добавить модель оружия -->
     <a-entity
       id='PlayerCamera'
       @click='click'
@@ -17,23 +16,28 @@
     >
       <a-cursor
         id='PlayerCursor'
-        ref='PlayerCursor'
-        geometry='
-          primitive: ring;
-          radiusInner: 0.0001;
-          radiusOuter: 0.003;
-        '
-        material='
-          shader: flat;
-          color: black;
-        '
+        position='0 -0.7 -2'
         cursor='fuse: false'
+      />
+
+      <a-gltf-model
+        id='PlayerGun'
+        position='0 -0.6 -1'
+        rotation='0 90 0'
+        scale='0.05 0.05 0.05'
+        src="#AssetsModelsGun"
       />
     </a-entity>
   </a-entity>
 </template>
 
 <script>
+import hotkeys from 'hotkeys-js';
+
+// todo запас пуль и перезарядка.
+// todo реакция модели на выстрел - отдача для оружия.
+// todo при ходьбе мотать оружие из стороны в сторону.
+// todo система хп. места пополнения хп.
 export default {
   name: 'Player',
 
@@ -41,16 +45,31 @@ export default {
     return {
       PlayerCursor: null,
       click: Function,
-      rate: 1000 / 5,
-      acceleration: -20,
+      rate: 1000 / 4,
+      move: Function,
+      run: Function,
+      jump: Function,
+      duration: { move: 350, run: 200, jump: 600 },
+      controls: { speed: 0.45 },
+      acceleration: -40,
     };
   },
 
   mounted() {
-    this.PlayerCursor = this.$refs.PlayerCursor.object3D;
+    this.PlayerCursor = document.getElementById('PlayerCursor').object3D;
 
     this.click = window.AFRAME.utils.throttle(this.fire, this.rate, null);
-    window.app.PlayerFire = this.fire;
+    this.move = window.AFRAME.utils.throttle(window.app.noise, this.duration.move, null);
+    this.run = window.AFRAME.utils.throttle(window.app.noise, this.duration.run, null);
+    this.jump = window.AFRAME.utils.throttle(window.app.noise, this.duration.jump, null);
+
+    window.app.PlayerFire = this.click;
+
+    this.movement();
+  },
+
+  destroyed() {
+    hotkeys.unbind('w, a, s, d, w+a, w+d, shift+w, shift+w+a, shift+w+d, space');
   },
 
   methods: {
@@ -66,8 +85,39 @@ export default {
       });
 
       document.dispatchEvent(playerFire);
-      // todo добавить другой звук.
-      new Audio('audios/revolver_shoot1.mp3').play();
+      window.app.noise({ path: 'audios/revolver_shoot1.mp3' });
+    },
+
+    movement() {
+      const wasd = 'w, a, s, d, w+a, w+d';
+      const special = 'shift+w, shift+w+a, shift+w+d, space';
+
+      hotkeys(`${wasd}, ${special}`, (_, { key }) => {
+        switch (key) {
+          case 'w':
+          case 'a':
+          case 's':
+          case 'd':
+          case 'w+a':
+          case 'w+d':
+            this.controls = { ...this.controls, speed: 0.45 };
+            this.move({ path: 'audios/step_stone.mp3' });
+            break;
+
+          case 'shift+w':
+          case 'shift+w+a':
+          case 'shift+w+d':
+            this.controls = { ...this.controls, speed: 0.8 };
+            this.run({ path: 'audios/step_stone.mp3' });
+            break;
+
+          case 'space':
+            this.jump({ path: 'audios/male_jump.mp3' });
+            break;
+
+          default:
+        }
+      });
     },
   },
 };

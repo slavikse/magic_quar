@@ -1,6 +1,6 @@
 <template>
   <a-entity id='Balls'>
-    <Ball
+    <BallsBall
       v-for='({ id, isShown }) in balls'
       v-if='isShown'
       :key='id'
@@ -11,19 +11,19 @@
 
 <script>
 import uuidv1 from 'uuid/v1';
-import Ball from './Ball.vue';
+import BallsBall from './BallsBall.vue';
 
 export default {
   name: 'Balls',
 
   components: {
-    Ball,
+    BallsBall,
   },
 
   data() {
     return {
       balls: [],
-      lifeTime: 5 * 1000,
+      lifeTime: 10 * 1000,
       interval: null,
       clearTime: 60 * 1000,
     };
@@ -49,9 +49,9 @@ export default {
       this.$nextTick(this.acceleration.bind(null, id, position, direction));
     },
 
-    hide(id) {
+    hide(hidesId) {
       this.balls.some(({ id: ballId }, index) => {
-        if (ballId === id) {
+        if (ballId === hidesId) {
           this.balls[index].isShown = false;
           return true;
         }

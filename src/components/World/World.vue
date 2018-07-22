@@ -1,17 +1,9 @@
 <template>
   <a-entity id='World'>
     <a-sky
-      id='WorldSky'
-      src='#AssetsBackground'
-      radius='500'
-    />
-
-    <a-sound
-      id='WorldAmbient'
-      src='#AssetsAmbient'
-      autoplay="true"
-      loop='true'
-      volume='0.5'
+      id='WorldImagesBackground'
+      src='#AssetsImagesBackground'
+      radius='200'
     />
   </a-entity>
 </template>

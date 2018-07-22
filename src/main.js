@@ -3,12 +3,12 @@ import 'aframe-extras';
 import 'aframe-physics-system';
 import 'aframe-animation-component';
 import Vue from 'vue';
-import './registerComponent';
+import './RegisterComponent';
 import App from './App.vue';
 import store from './store';
+import './noise';
 
 Vue.config.productionTip = false;
-window.app = {};
 
 new Vue({
   store,

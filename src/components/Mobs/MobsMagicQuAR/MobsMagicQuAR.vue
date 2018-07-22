@@ -1,30 +1,38 @@
 <template>
   <a-entity id='MobsMagicQuAR'>
+    <!--  :mobs-magic-quar-engine='{ Player }' -->
     <a-box
       id='MobsMagicQuAREngine'
-      :mobs-magic-quar-engine='{ Player }'
       dynamic-body='mass: 0'
       constraint='
         target: #MobsMagicQuARShape;
         type: coneTwist;
-        pivot: 0 -2 0;
+        pivot: 0 -1 0;
       '
-      position='0, 3.15, 0'
+      position='0, 2.5, 0'
       width='0.01'
       height='0.01'
       depth='0.01'
-      :animation='animation'
       visible='false'
+      :animation='movement'
     />
 
     <a-entity
       id='MobsMagicQuARShape'
-      @collide='collide'
       position='0 2 -2'
-      dynamic-body='mass: 5'
+      dynamic-body='mass: 2'
       shadow='receive: true'
-      class='MobsMagicQuARCollide'
     >
+      <a-text
+        id='MobsMagicQuARHealth'
+        position='0 2 0'
+        align='center'
+        height='10'
+        color='red'
+        side='double'
+        :value='health'
+      />
+
       <a-box
         id='MobsMagicQuARHead'
         constraint='target: #MobsMagicQuARBody'
@@ -94,25 +102,49 @@ export default {
   data() {
     return {
       Player: null,
-      animation: { property: 'position', dur: 2000, to: { x: 0, y: 3.15, z: 0 } },
+      MobsMagicQuAREngine: null,
+      interval: null,
+      movement: {
+        property: 'position',
+        easing: 'linear',
+        dur: 3000,
+        to: { x: 0, y: 3.15, z: 0 },
+      },
+      health: 100,
     };
   },
 
+  // OBJECT.position.distanceTo(OBJECT.position)
   mounted() {
     this.Player = document.getElementById('Player').object3D;
+    this.MobsMagicQuAREngine = document.getElementById('MobsMagicQuAREngine').object3D;
 
-    // todo интерполяция скорости передвижения моба.
-    setInterval(() => {
-      const { x, z } = this.Player.getWorldPosition();
-      this.animation = { ...this.animation, to: { x, z } };
-    }, 100);
+    this.interval = setInterval(this.tick, 200);
+    document.addEventListener('MobsMagicQuARCollide', this.collide);
+  },
+
+  destroyed() {
+    clearInterval(this.interval);
+    document.removeEventListener('MobsMagicQuARCollide', this.collide);
   },
 
   methods: {
-    // todo система хп. места пополнения хп.
-    // todo пересечение с объектом пули. испускается событие, тут прослушивают и -1 хп.
-    collide(e) {
-      // console.log(e);
+    tick() {
+      const { x, z } = this.Player.getWorldPosition();
+      this.move(x, z);
+      this.lookAt(x, z);
+    },
+
+    move(x, z) {
+      this.movement = { ...this.movement, to: { x, z } };
+    },
+
+    lookAt(x, z) {
+      this.MobsMagicQuAREngine.lookAt(x, 3, z);
+    },
+
+    collide() {
+      this.health -= 1;
     },
   },
 };

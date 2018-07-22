@@ -1,11 +1,13 @@
 <template>
   <a-entity id='Lights'>
+    <!-- 333 -->
     <a-light
       id='LightsAmbient'
       type='ambient'
       color='#fff'
     />
 
+    <!--
     <a-entity
       id='LightsPoint1'
       position='0 10 0'
@@ -17,6 +19,7 @@
         castShadow: true;
       '
     />
+    -->
   </a-entity>
 </template>
 
