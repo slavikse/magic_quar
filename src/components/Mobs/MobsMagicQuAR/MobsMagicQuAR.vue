@@ -1,38 +1,38 @@
 <template>
   <a-entity id='MobsMagicQuAR'>
-    <!--  :mobs-magic-quar-engine='{ Player }' -->
     <a-box
       id='MobsMagicQuAREngine'
       dynamic-body='mass: 0'
       constraint='
         target: #MobsMagicQuARShape;
         type: coneTwist;
-        pivot: 0 -1 0;
+        pivot: 0 -2 0;
       '
-      position='0, 2.5, 0'
-      width='0.01'
-      height='0.01'
-      depth='0.01'
-      visible='false'
+      position='0, 3.15, 0'
+      width='0.1'
+      height='0.1'
+      depth='0.1'
+      visible='true'
       :animation='movement'
     />
 
+    <!-- todo
+    <a-text
+      id='MobsMagicQuARHealth'
+      constraint='target: #MobsMagicQuARBody'
+      align='center'
+      color='red'
+      side='double'
+      :value='health'
+    />
+    -->
+
     <a-entity
       id='MobsMagicQuARShape'
-      position='0 2 -2'
+      position='0 1.4 0'
       dynamic-body='mass: 2'
       shadow='receive: true'
     >
-      <a-text
-        id='MobsMagicQuARHealth'
-        position='0 2 0'
-        align='center'
-        height='10'
-        color='red'
-        side='double'
-        :value='health'
-      />
-
       <a-box
         id='MobsMagicQuARHead'
         constraint='target: #MobsMagicQuARBody'

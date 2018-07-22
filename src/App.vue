@@ -2,11 +2,11 @@
   <a-scene
     id='App'
     physics='
-      debug: true;
+      debug: false;
       iterations: 3000;
       maxInterval: 0.008;
     '
-    stats='true'
+    stats='false'
     vr-mode-ui='enabled: false'
   >
     <AssetsAudios/>

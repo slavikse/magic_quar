@@ -43,7 +43,7 @@
     <a-box
       id='WallsLeft'
       src='#AssetsImagesWall'
-      position='3 2 15'
+      position='4 2 15'
       rotation='0 180 0'
       height='6'
       width='30'
@@ -99,10 +99,20 @@ export default {
       movement: {
         property: 'position',
         easing: 'linear',
-        // dur: 3000,
-        // to: { x: 0 },
+        dir: 'alternate',
+        dur: 3000,
+        loop: true,
+        to: { x: 0 },
+        startEvents: 'test',
+        autoplay: true,
       },
     };
+  },
+
+  methods: {
+    test() {
+      console.log('test');
+    },
   },
 };
 </script>

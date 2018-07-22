@@ -20,6 +20,7 @@
         cursor='fuse: false'
       />
 
+      <!-- todo руку к моделе пистолета -->
       <a-gltf-model
         id='PlayerGun'
         position='0 -0.6 -1'

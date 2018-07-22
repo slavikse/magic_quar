@@ -2,7 +2,7 @@
   <a-sphere
     id='BallsBall'
     @collide='collide'
-    dynamic-body='mass: 1'
+    dynamic-body='mass: 2'
     radius='0.03'
     shadow='receive: true'
     color='black'
