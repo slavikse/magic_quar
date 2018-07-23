@@ -44,6 +44,7 @@
 </template>
 
 <script>
+// todo preloader
 import {
   AssetsAudios,
   AssetsImages,

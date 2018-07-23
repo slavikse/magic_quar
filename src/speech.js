@@ -44,6 +44,9 @@ recognition.onresult = ({ results }) => {
 
   if (message === 'пасхалка') {
     utter.text = 'Не надо тут выпрашивать, что ещё не реализовано я СКАЗАЛ!!! А-ТА-ТА!!!';
+  } else if (message === 'соообщение') {
+    utter.text
+      = 'С Днём Рождения дружище!!! Желаю тебе, чтобы всё было хорошо!!! Остальное у тебя уже есть и скоро будет еще!';
   }
 
   synth.speak(utter);
@@ -57,3 +60,6 @@ recognition.onspeechend = () => {
     recognition.start();
   }, 1000);
 };
+
+utter.text = 'Привет!';
+synth.speak(utter);
