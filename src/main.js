@@ -10,6 +10,14 @@ import './noise';
 
 Vue.config.productionTip = false;
 
+window.ws = new WebSocket('ws://localhost:9000');
+
+window.ws.onopen = () => {
+  console.log('Соединение установлено.');
+
+  window.ws.send(JSON.stringify({ id: window.id }));
+};
+
 new Vue({
   store,
   render: h => h(App),

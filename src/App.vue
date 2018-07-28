@@ -13,9 +13,14 @@
     <AssetsImages/>
     <AssetsModels/>
 
+    <!--<Mobs/>-->
+
+    <Players position='0 0 0'/>
     <Balls/>
-    <Mobs/>
-    <Player/>
+
+    <PlayersTwo position='0 0 -5'/>
+    <BallsTwo/>
+
     <Walls/>
     <Lights/>
     <World/>
@@ -44,16 +49,17 @@
 </template>
 
 <script>
-// todo preloader
 import {
   AssetsAudios,
   AssetsImages,
   AssetsModels,
 
   Balls,
+  BallsTwo,
   Lights,
-  Mobs,
-  Player,
+  // Mobs,
+  Players,
+  PlayersTwo,
   Walls,
   World,
 } from './components';
@@ -67,9 +73,11 @@ export default {
     AssetsModels,
 
     Balls,
+    BallsTwo,
     Lights,
-    Mobs,
-    Player,
+    // Mobs,
+    Players,
+    PlayersTwo,
     Walls,
     World,
   },

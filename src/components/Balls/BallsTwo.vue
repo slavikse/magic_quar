@@ -1,5 +1,5 @@
 <template>
-  <a-entity id='Balls'>
+  <a-entity id='BallsTwo'>
     <BallsBall
       v-for='({ id, isShown }) in balls'
       v-if='isShown'
@@ -14,7 +14,7 @@ import uuidv1 from 'uuid/v1';
 import BallsBall from './BallsBall.vue';
 
 export default {
-  name: 'Balls',
+  name: 'BallsTwo',
 
   components: {
     BallsBall,
@@ -30,12 +30,12 @@ export default {
   },
 
   mounted() {
-    document.addEventListener('PlayerFire0', this.fire);
+    document.addEventListener('PlayerFire1', this.fire);
     this.interval = setInterval(this.cleaner, this.clearTime);
   },
 
   destroyed() {
-    document.removeEventListener('PlayerFire0', this.fire);
+    document.removeEventListener('PlayerFire1', this.fire);
     clearInterval(this.interval);
   },
 

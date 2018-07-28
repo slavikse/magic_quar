@@ -1,28 +1,29 @@
 <template>
   <a-entity
-    id='Player'
+    :id='`Player${window.id}`'
     position='-10 0 25'
     :movement-controls='controls'
     jump-ability='distance: 1.2'
     kinematic-body
     shadow='receive: true'
   >
+    <!-- todo 1 игрок -->
     <a-entity
-      id='PlayerCamera'
+      :id='`PlayerCamera${window.id}`'
       @click='click'
       position='0 1.6 0'
       look-controls='pointerLockEnabled: true'
       camera
     >
       <a-cursor
-        id='PlayerCursor'
+        :id='`PlayerCursor${window.id}`'
         position='0 -0.7 -2'
         cursor='fuse: false'
       />
 
       <!-- todo руку к моделе пистолета -->
       <a-gltf-model
-        id='PlayerGun'
+        :id='`PlayerGun${window.id}`'
         position='0 -0.6 -1'
         rotation='0 90 0'
         scale='0.05 0.05 0.05'
@@ -40,13 +41,14 @@ import hotkeys from 'hotkeys-js';
 // todo при ходьбе мотать оружие из стороны в сторону.
 // todo система хп. места пополнения хп.
 export default {
-  name: 'Player',
+  name: 'Players',
 
   data() {
     return {
+      window,
       PlayerCursor: null,
       click: Function,
-      rate: 1000 / 4,
+      rate: 1000 / 3,
       move: Function,
       run: Function,
       jump: Function,
@@ -57,16 +59,26 @@ export default {
   },
 
   mounted() {
-    this.PlayerCursor = document.getElementById('PlayerCursor').object3D;
+    this.PlayerCursor = document.getElementById(`PlayerCursor${window.id}`).object3D;
 
     this.click = window.AFRAME.utils.throttle(this.fire, this.rate, null);
     this.move = window.AFRAME.utils.throttle(window.app.noise, this.duration.move, null);
     this.run = window.AFRAME.utils.throttle(window.app.noise, this.duration.run, null);
     this.jump = window.AFRAME.utils.throttle(window.app.noise, this.duration.jump, null);
 
+    this.sendDelay = window.AFRAME.utils.throttle(this.send, 50, null);
+
     window.app.PlayerFire = this.click;
 
     this.movement();
+
+    window.ws.onmessage = ({ data }) => {
+      const { payload } = JSON.parse(data);
+
+      if (Number(payload.id) !== window.id) {
+        console.log(payload);
+      }
+    };
   },
 
   destroyed() {
@@ -78,7 +90,7 @@ export default {
       const { x: pX, y: pY, z: pZ } = this.PlayerCursor.getWorldPosition();
       const { x: dX, y: dY, z: dZ } = this.PlayerCursor.getWorldDirection();
 
-      const playerFire = new CustomEvent('PlayerFire', {
+      const playerFire = new CustomEvent('PlayerFire0', {
         detail: {
           position: [pX, pY, pZ],
           direction: [dX, dY, dZ].map(d => d * this.acceleration),
@@ -103,6 +115,10 @@ export default {
           case 'w+d':
             this.controls = { ...this.controls, speed: 0.45 };
             this.move({ path: 'audios/step_stone.mp3' });
+
+            const { x, y, z } = this.PlayerCursor.getWorldPosition();
+            this.sendDelay([x, y + 1.6, z]);
+
             break;
 
           case 'shift+w':
@@ -119,6 +135,13 @@ export default {
           default:
         }
       });
+    },
+
+    send(position) {
+      window.ws.send(JSON.stringify({
+        id: window.id,
+        payload: { position },
+      }));
     },
   },
 };
