@@ -1,11 +1,12 @@
 <template>
-  <a-entity id='Balls'>
-    <BallsBall
-      v-for='({ id, isShown }) in balls'
-      v-if='isShown'
-      :key='id'
-      :id='id'
-    />
+  <a-entity id="Balls">
+    <template v-for="{ id, isShown } in balls">
+      <BallsBall
+        v-if="isShown"
+        :key="id"
+        :id="id"
+      />
+    </template>
   </a-entity>
 </template>
 
@@ -24,18 +25,18 @@ export default {
     return {
       balls: [],
       lifeTime: 5 * 1000,
-      interval: null,
+      interval: undefined,
       clearTime: 10 * 1000,
     };
   },
 
   mounted() {
-    document.addEventListener('PlayerFire0', this.fire);
+    document.addEventListener('PlayerFire', this.fire);
     this.interval = setInterval(this.cleaner, this.clearTime);
   },
 
   destroyed() {
-    document.removeEventListener('PlayerFire0', this.fire);
+    document.removeEventListener('PlayerFire', this.fire);
     clearInterval(this.interval);
   },
 
@@ -43,15 +44,15 @@ export default {
     fire({ detail: { position, direction } }) {
       const id = uuidv1();
 
-      setTimeout(this.hide.bind(this, id), this.lifeTime);
+      setTimeout(() => this.hide(id), this.lifeTime);
       this.balls.push({ id, isShown: true });
 
-      this.$nextTick(this.acceleration.bind(null, id, position, direction));
+      this.$nextTick(() => this.acceleration(id, position, direction));
     },
 
-    hide(hidesId) {
+    hide(hideBallId) {
       this.balls.some(({ id: ballId }, index) => {
-        if (ballId === hidesId) {
+        if (ballId === hideBallId) {
           this.balls[index].isShown = false;
           return true;
         }

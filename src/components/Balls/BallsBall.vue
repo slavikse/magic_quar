@@ -1,11 +1,11 @@
 <template>
   <a-sphere
-    id='BallsBall'
-    @collide='collide'
-    dynamic-body='mass: 2'
-    radius='0.03'
-    shadow='receive: true'
-    color='black'
+    id="BallsBall"
+    dynamic-body="mass: 2"
+    radius="0.03"
+    shadow="receive: true"
+    color="black"
+    @collide="collide"
   />
 </template>
 

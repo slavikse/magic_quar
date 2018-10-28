@@ -1,95 +1,95 @@
 <template>
-  <a-entity id='MobsMagicQuAR'>
+  <a-entity id="MobsMagicQuAR">
     <a-box
-      id='MobsMagicQuAREngine'
-      dynamic-body='mass: 0'
-      constraint='
+      id="MobsMagicQuAREngine"
+      :animation="movement"
+      dynamic-body="mass: 0"
+      constraint="
         target: #MobsMagicQuARShape;
         type: coneTwist;
         pivot: 0 -2 0;
-      '
-      position='0, 3.15, 0'
-      width='0.1'
-      height='0.1'
-      depth='0.1'
-      visible='true'
-      :animation='movement'
+      "
+      position="0 3.15 0"
+      width="0.1"
+      height="0.1"
+      depth="0.1"
+      visible="true"
     />
 
     <!-- todo
     <a-text
-      id='MobsMagicQuARHealth'
-      constraint='target: #MobsMagicQuARBody'
-      align='center'
-      color='red'
-      side='double'
-      :value='health'
+      id="MobsMagicQuARHealth"
+      constraint="target: #MobsMagicQuARBody"
+      align="center"
+      color="red"
+      side="double"
+      :value="health"
     />
     -->
 
     <a-entity
-      id='MobsMagicQuARShape'
-      position='0 1.4 0'
-      dynamic-body='mass: 2'
-      shadow='receive: true'
+      id="MobsMagicQuARShape"
+      position="0 1.4 0"
+      dynamic-body="mass: 2"
+      shadow="receive: true"
     >
       <a-box
-        id='MobsMagicQuARHead'
-        constraint='target: #MobsMagicQuARBody'
-        position='0 1.5 0'
-        width='0.4'
-        height='0.4'
-        depth='0.4'
-        color='#755'
+        id="MobsMagicQuARHead"
+        constraint="target: #MobsMagicQuARBody"
+        position="0 1.5 0"
+        width="0.4"
+        height="0.4"
+        depth="0.4"
+        color="#755"
       />
 
       <a-box
-        id='MobsMagicQuARBody'
-        position='0 0.4 0'
-        width='0.7'
-        height='1.5'
-        depth='0.7'
-        color='#955'
+        id="MobsMagicQuARBody"
+        position="0 0.4 0"
+        width="0.7"
+        height="1.5"
+        depth="0.7"
+        color="#955"
       />
 
       <a-box
-        id='MobsMagicQuARLeftHand'
-        constraint='target: #MobsMagicQuARBody'
-        position='-0.7 0.6 0'
-        width='0.3'
-        height='1'
-        depth='0.3'
-        color='#755'
+        id="MobsMagicQuARLeftHand"
+        constraint="target: #MobsMagicQuARBody"
+        position="-0.7 0.6 0"
+        width="0.3"
+        height="1"
+        depth="0.3"
+        color="#755"
       />
 
       <a-box
-        id='MobsMagicQuARRightHand'
-        constraint='target: #MobsMagicQuARBody'
-        position='0.7 0.6 0'
-        width='0.3'
-        height='1'
-        depth='0.3'
-        color='#755'
+        id="MobsMagicQuARRightHand"
+        constraint="target: #MobsMagicQuARBody"
+        position="0.7 0.6 0"
+        width="0.3"
+        height="1"
+        depth="0.3"
+        color="#755"
       />
 
       <a-box
-        id='MobsMagicQuARLeftLeg'
-        constraint='target: #MobsMagicQuARBody'
-        position='-0.4 -0.84 0'
-        width='0.5'
-        height='0.3'
-        depth='0.5'
-        color='#755'
+        id="MobsMagicQuARLeftLeg"
+        constraint="target: #MobsMagicQuARBody"
+        position="-0.4 -0.84 0"
+        width="0.5"
+        height="0.3"
+        depth="0.5"
+        color="#755"
       />
 
       <a-box
-        id='MobsMagicQuARRightLeg'
-        constraint='target: #MobsMagicQuARBody'
-        position='0.4 -0.84 0'
-        width='0.5'
-        height='0.3'
-        depth='0.5'
-        color='#755'
+        id="MobsMagicQuARRightLeg"
+        constraint="target: #MobsMagicQuARBody"
+        position="0.4 -0.84 0"
+        width="0.5"
+        height="0.3"
+        depth="0.5"
+        color="#755"
       />
     </a-entity>
   </a-entity>
@@ -101,9 +101,9 @@ export default {
 
   data() {
     return {
-      Player: null,
-      MobsMagicQuAREngine: null,
-      interval: null,
+      Player: undefined,
+      MobsMagicQuAREngine: undefined,
+      interval: undefined,
       movement: {
         property: 'position',
         easing: 'linear',
@@ -145,6 +145,7 @@ export default {
 
     collide() {
       this.health -= 1;
+      console.log('this.health', this.health);
     },
   },
 };

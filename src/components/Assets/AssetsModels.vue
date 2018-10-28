@@ -1,8 +1,8 @@
 <template>
-  <a-assets id='AssetsModels'>
+  <a-assets id="AssetsModels">
     <a-asset-item
-      id='AssetsModelsGun'
-      src='models/gun/scene.gltf'
+      id="AssetsModelsGun"
+      src="models/gun/scene.gltf"
     />
   </a-assets>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <a-assets id='AssetsAudios'>
+  <a-assets id="AssetsAudios">
   </a-assets>
 </template>
 

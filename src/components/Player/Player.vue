@@ -1,32 +1,30 @@
 <template>
   <a-entity
-    :id='`Player${window.id}`'
-    position='-10 0 25'
-    :movement-controls='controls'
-    jump-ability='distance: 1.2'
+    id="Player"
+    :movement-controls="controls"
+    position="0 0 10"
     kinematic-body
-    shadow='receive: true'
+    jump-ability="distance: 1.2"
+    shadow="receive: true"
   >
-    <!-- todo 1 игрок -->
     <a-entity
-      :id='`PlayerCamera${window.id}`'
-      @click='click'
-      position='0 1.6 0'
-      look-controls='pointerLockEnabled: true'
+      id="PlayerCamera"
+      position="0 1.6 0"
+      look-controls="pointerLockEnabled: true"
       camera
+      @click="click"
     >
       <a-cursor
-        :id='`PlayerCursor${window.id}`'
-        position='0 -0.7 -2'
-        cursor='fuse: false'
+        id="PlayerCursor"
+        ref="PlayerCursor"
+        position="0 -0.7 -2"
       />
 
-      <!-- todo руку к моделе пистолета -->
       <a-gltf-model
-        :id='`PlayerGun${window.id}`'
-        position='0 -0.6 -1'
-        rotation='0 90 0'
-        scale='0.05 0.05 0.05'
+        id="PlayerGun"
+        position="0 -0.6 -1"
+        rotation="0 90 0"
+        scale="0.05 0.05 0.05"
         src="#AssetsModelsGun"
       />
     </a-entity>
@@ -41,17 +39,16 @@ import hotkeys from 'hotkeys-js';
 // todo при ходьбе мотать оружие из стороны в сторону.
 // todo система хп. места пополнения хп.
 export default {
-  name: 'Players',
+  name: 'Player',
 
   data() {
     return {
-      window,
       PlayerCursor: null,
-      click: Function,
+      click: () => { },
       rate: 1000 / 3,
-      move: Function,
-      run: Function,
-      jump: Function,
+      move: () => { },
+      run: () => { },
+      jump: () => { },
       duration: { move: 350, run: 200, jump: 600 },
       controls: { speed: 0.45 },
       acceleration: -40,
@@ -59,26 +56,16 @@ export default {
   },
 
   mounted() {
-    this.PlayerCursor = document.getElementById(`PlayerCursor${window.id}`).object3D;
+    this.PlayerCursor = this.$refs.PlayerCursor.object3D;
 
-    this.click = window.AFRAME.utils.throttle(this.fire, this.rate, null);
-    this.move = window.AFRAME.utils.throttle(window.app.noise, this.duration.move, null);
-    this.run = window.AFRAME.utils.throttle(window.app.noise, this.duration.run, null);
-    this.jump = window.AFRAME.utils.throttle(window.app.noise, this.duration.jump, null);
-
-    this.sendDelay = window.AFRAME.utils.throttle(this.send, 50, null);
+    this.click = window.AFRAME.utils.throttle(this.fire, this.rate);
+    this.move = window.AFRAME.utils.throttle(window.app.noise, this.duration.move);
+    this.run = window.AFRAME.utils.throttle(window.app.noise, this.duration.run);
+    this.jump = window.AFRAME.utils.throttle(window.app.noise, this.duration.jump);
 
     window.app.PlayerFire = this.click;
 
     this.movement();
-
-    window.ws.onmessage = ({ data }) => {
-      const { payload } = JSON.parse(data);
-
-      if (Number(payload.id) !== window.id) {
-        console.log(payload);
-      }
-    };
   },
 
   destroyed() {
@@ -90,7 +77,7 @@ export default {
       const { x: pX, y: pY, z: pZ } = this.PlayerCursor.getWorldPosition();
       const { x: dX, y: dY, z: dZ } = this.PlayerCursor.getWorldDirection();
 
-      const playerFire = new CustomEvent('PlayerFire0', {
+      const playerFire = new CustomEvent('PlayerFire', {
         detail: {
           position: [pX, pY, pZ],
           direction: [dX, dY, dZ].map(d => d * this.acceleration),
@@ -102,6 +89,9 @@ export default {
     },
 
     movement() {
+      // todo send position
+      // const { x, y, z } = this.PlayerCursor.getWorldPosition();
+
       const wasd = 'w, a, s, d, w+a, w+d';
       const special = 'shift+w, shift+w+a, shift+w+d, space';
 
@@ -115,10 +105,6 @@ export default {
           case 'w+d':
             this.controls = { ...this.controls, speed: 0.45 };
             this.move({ path: 'audios/step_stone.mp3' });
-
-            const { x, y, z } = this.PlayerCursor.getWorldPosition();
-            this.sendDelay([x, y + 1.6, z]);
-
             break;
 
           case 'shift+w':
@@ -133,15 +119,9 @@ export default {
             break;
 
           default:
+            console.log('Упс!');
         }
       });
-    },
-
-    send(position) {
-      window.ws.send(JSON.stringify({
-        id: window.id,
-        payload: { position },
-      }));
     },
   },
 };

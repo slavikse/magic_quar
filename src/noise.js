@@ -9,4 +9,3 @@ window.app = {};
 window.app.noise = noise;
 
 noise({ path: 'audios/ambiences/horror.mp3', volume: 1, loop: true });
-// todo скопировать архитекруту настроек из смартбас.
