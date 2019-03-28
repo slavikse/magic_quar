@@ -3,7 +3,10 @@ module.exports = {
   env: {
     node: true,
   },
-  'extends': [
+  parserOptions: {
+    parser: 'babel-eslint',
+  },
+  extends: [
     'plugin:vue/recommended',
     '@vue/airbnb',
   ],
@@ -15,8 +18,5 @@ module.exports = {
     'vue/no-v-html': 'warning',
     'vue/html-closing-bracket-spacing': 'error',
     'vue/prop-name-casing': 'error',
-  },
-  parserOptions: {
-    parser: 'babel-eslint',
   },
 };
