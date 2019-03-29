@@ -1,1 +1,3 @@
-export Walls from './Walls.vue';
+import Walls from './Walls.vue';
+
+export { Walls };

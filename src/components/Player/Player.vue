@@ -1,14 +1,13 @@
 <template>
   <a-entity
     id="Player"
-    :movement-controls="controls"
-    position="0 0 10"
-    kinematic-body
-    jump-ability="distance: 1.2"
-    shadow="receive: true"
+    movement-controls="speed: 0.4"
+    kinematic-body="enableJumps: true"
+    jump-ability="distance: 2.5; maxJumps: 2"
   >
     <a-entity
       id="PlayerCamera"
+      ref="Player"
       position="0 1.6 0"
       look-controls="pointerLockEnabled: true"
       camera
@@ -16,111 +15,122 @@
     >
       <a-cursor
         id="PlayerCursor"
-        ref="PlayerCursor"
-        position="0 -0.7 -2"
-      />
-
-      <a-gltf-model
-        id="PlayerGun"
-        position="0 -0.6 -1"
-        rotation="0 90 0"
-        scale="0.05 0.05 0.05"
-        src="#AssetsModelsGun"
+        ref="Cursor"
+        scale="0.5 0.5 0.5"
       />
     </a-entity>
   </a-entity>
 </template>
 
 <script>
-import hotkeys from 'hotkeys-js';
+import io from 'socket.io-client';
 
-// todo запас пуль и перезарядка.
-// todo реакция модели на выстрел - отдача для оружия.
-// todo при ходьбе мотать оружие из стороны в сторону.
-// todo система хп. места пополнения хп.
+const URI = process.env.VUE_APP_BASE_URL;
+const opts = { transports: ['websocket'] };
+const frequency = 1000 / 60;
+
+let socket;
+let broadcastId;
+
 export default {
   name: 'Player',
 
   data() {
     return {
-      PlayerCursor: null,
+      clientId: -1,
+      Player: undefined,
+      Cursor: undefined,
+
       click: () => { },
-      rate: 1000 / 3,
-      move: () => { },
-      run: () => { },
-      jump: () => { },
-      duration: { move: 350, run: 200, jump: 600 },
-      controls: { speed: 0.45 },
-      acceleration: -40,
+      rate: 1000 / 5,
+      acceleration: -20,
+
+      position: [0, 0, 0],
+      rotation: [0, 0, 0],
     };
   },
 
   mounted() {
-    this.PlayerCursor = this.$refs.PlayerCursor.object3D;
-
-    this.click = window.AFRAME.utils.throttle(this.fire, this.rate);
-    this.move = window.AFRAME.utils.throttle(window.app.noise, this.duration.move);
-    this.run = window.AFRAME.utils.throttle(window.app.noise, this.duration.run);
-    this.jump = window.AFRAME.utils.throttle(window.app.noise, this.duration.jump);
-
-    window.app.PlayerFire = this.click;
-
-    this.movement();
+    this.initial();
+    this.connect();
+    this.broadcast();
   },
 
   destroyed() {
-    hotkeys.unbind('w, a, s, d, w+a, w+d, shift+w, shift+w+a, shift+w+d, space');
+    clearTimeout(broadcastId);
   },
 
   methods: {
-    fire() {
-      const { x: pX, y: pY, z: pZ } = this.PlayerCursor.getWorldPosition();
-      const { x: dX, y: dY, z: dZ } = this.PlayerCursor.getWorldDirection();
+    initial() {
+      this.Player = this.$refs.Player.object3D;
+      this.Cursor = this.$refs.Cursor.object3D;
 
-      const playerFire = new CustomEvent('PlayerFire', {
-        detail: {
-          position: [pX, pY, pZ],
-          direction: [dX, dY, dZ].map(d => d * this.acceleration),
-        },
-      });
-
-      document.dispatchEvent(playerFire);
-      window.app.noise({ path: 'audios/revolver_shoot1.mp3' });
+      this.click = window.AFRAME.utils.throttle(this.fire, this.rate);
     },
 
-    movement() {
-      // todo send position
-      // const { x, y, z } = this.PlayerCursor.getWorldPosition();
+    fire() {
+      const { x: pX, y: pY, z: pZ } = this.Cursor.getWorldPosition(new window.THREE.Vector3());
+      const { x: dX, y: dY, z: dZ } = this.Cursor.getWorldDirection(new window.THREE.Vector3());
 
-      const wasd = 'w, a, s, d, w+a, w+d';
-      const special = 'shift+w, shift+w+a, shift+w+d, space';
+      const fire = {
+        position: [pX, pY, pZ],
+        direction: [dX, dY, dZ].map(d => d * this.acceleration),
+      };
 
-      hotkeys(`${wasd}, ${special}`, (_, { key }) => {
-        switch (key) {
-          case 'w':
-          case 'a':
-          case 's':
-          case 'd':
-          case 'w+a':
-          case 'w+d':
-            this.controls = { ...this.controls, speed: 0.45 };
-            this.move({ path: 'audios/step_stone.mp3' });
-            break;
+      const playerFire = new CustomEvent('PlayerFire', { detail: fire });
+      document.dispatchEvent(playerFire);
 
-          case 'shift+w':
-          case 'shift+w+a':
-          case 'shift+w+d':
-            this.controls = { ...this.controls, speed: 0.8 };
-            this.run({ path: 'audios/step_stone.mp3' });
-            break;
+      socket.emit('clientUpdate', { fire });
+    },
 
-          case 'space':
-            this.jump({ path: 'audios/male_jump.mp3' });
-            break;
+    connect() {
+      socket = io(`${URI}/clients`, opts);
 
-          default:
-            console.log('Упс!');
-        }
+      // Сервер выдает идентификатор.
+      socket.once('connected', async ({ clientId, clients }) => {
+        this.clientId = clientId;
+        this.$store.dispatch('clients/add', clients);
+
+        const payload = {
+          position: this.position,
+          rotation: this.rotation,
+        };
+
+        // Инициализация состояния на сервере для всех подключённых клиентов.
+        socket.emit('connected', payload);
+        console.log('client id', clientId);
+      });
+
+      socket.on('clientUpdate', async (client) => {
+        await this.$store.dispatch('clients/update', client);
+      });
+
+      socket.on('pong', async (latency) => {
+        await this.$store.dispatch('player/latency', latency);
+      });
+
+      socket.on('disconnected', async ({ clientId }) => {
+        console.log('disconnected', clientId);
+        await this.$store.dispatch('clients/delete', clientId);
+      });
+    },
+
+    broadcast() {
+      broadcastId = setTimeout(this.broadcast, frequency);
+
+      const { x, y, z } = this.Player.getWorldPosition(new window.THREE.Vector3());
+      this.position = [x, y, z];
+
+      const { _x: x2, _y: y2, _z: z2 } = this.Player.rotation;
+      this.rotation = [
+        window.THREE.Math.radToDeg(x2),
+        window.THREE.Math.radToDeg(y2),
+        window.THREE.Math.radToDeg(z2),
+      ];
+
+      socket.emit('clientUpdate', {
+        position: this.position,
+        rotation: this.rotation,
       });
     },
   },

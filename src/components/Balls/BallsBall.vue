@@ -1,10 +1,9 @@
 <template>
-  <a-sphere
+  <a-box
     id="BallsBall"
-    dynamic-body="mass: 2"
-    radius="0.03"
-    shadow="receive: true"
-    color="black"
+    src="#AssetsImagesRoof"
+    dynamic-body="mass: 10"
+    color="#999"
     @collide="collide"
   />
 </template>

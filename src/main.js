@@ -1,7 +1,6 @@
 import Vue from 'vue';
 
 import './configure';
-import './noise';
 
 import store from './store';
 import App from './App.vue';

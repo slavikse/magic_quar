@@ -1,1 +1,3 @@
-export Balls from './Balls.vue';
+import Balls from './Balls.vue';
+
+export { Balls };

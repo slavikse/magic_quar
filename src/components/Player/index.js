@@ -1,1 +1,3 @@
-export Player from './Player.vue';
+import Player from './Player.vue';
+
+export { Player };

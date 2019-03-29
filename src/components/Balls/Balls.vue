@@ -24,20 +24,20 @@ export default {
   data() {
     return {
       balls: [],
-      lifeTime: 5 * 1000,
-      interval: undefined,
-      clearTime: 10 * 1000,
+      lifeTime: 10 * 1000,
+      intervalId: undefined,
+      clearTime: 20 * 1000,
     };
   },
 
   mounted() {
     document.addEventListener('PlayerFire', this.fire);
-    this.interval = setInterval(this.cleaner, this.clearTime);
+    this.intervalId = setInterval(this.cleaner, this.clearTime);
   },
 
   destroyed() {
     document.removeEventListener('PlayerFire', this.fire);
-    clearInterval(this.interval);
+    clearInterval(this.intervalId);
   },
 
   methods: {

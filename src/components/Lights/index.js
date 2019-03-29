@@ -1,1 +1,3 @@
-export Lights from './Lights.vue';
+import Lights from './Lights.vue';
+
+export { Lights };

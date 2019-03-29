@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
   env: {
+    browser: true,
     node: true,
   },
   parserOptions: {
@@ -11,6 +12,7 @@ module.exports = {
     '@vue/airbnb',
   ],
   rules: {
+    'import/prefer-default-export': 'off',
     'no-console': 'off',
     'no-param-reassign': 'off',
     'object-curly-newline': 'off',
